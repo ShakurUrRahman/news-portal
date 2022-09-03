@@ -10,19 +10,19 @@ const displayCategory = data => {
         // console.log(news)
         const catagoryList = document.createElement('li');
         catagoryList.innerHTML = `
-        <li onclick="loadNewsDetail('${news.category_id}')">${news.category_name}</li>
+        <li onclick="loadNewsList('${news.category_id}')">${news.category_name}</li>
         `;
         categoryContainer.appendChild(catagoryList)
     })
 };
-const loadNewsDetail = (id) => {
+const loadNewsList = (id) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`
     fetch(url)
         .then(res => res.json())
-        .then(data => displayNewsDetails(data.data))
+        .then(data => displayNewsList(data.data))
 }
 
-const displayNewsDetails = newsList => {
+const displayNewsList = newsList => {
     console.log(newsList)
     const newsListDetail = document.getElementById('news-list');
     newsListDetail.textContent = '';
@@ -40,7 +40,8 @@ const displayNewsDetails = newsList => {
                         <div class="card-actions">
                         <img class="w-1/12 rounded-full" src="${news.author.img}" alt="Album">
                         <p>${news.author.name}</p>
-                            <button onclick="loadDetail()" class="btn btn-primary">News Details</button>
+                            
+                            <label onclick="loadNewsDetail('${news._id}')" for="my-modal-6" class="btn modal-button">News Details</label>
                         </div>
                     </div>
                 
@@ -49,5 +50,22 @@ const displayNewsDetails = newsList => {
     })
 }
 
-loadDetail();
+const loadNewsDetail = (detail) => {
+    const url = `https://openapi.programming-hero.com/api/news/${detail}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayNewsDetail(data.data[0]))
+};
+
+const displayNewsDetail = newsDetail => {
+    console.log(newsDetail)
+    const modalTitle = document.getElementById('news-title')
+    modalTitle.innerText = newsDetail.title;
+    const modalDetail = document.getElementById('news-details')
+    modalDetail.innerHTML = `<img src="${newsDetail.image_url}"/>
+    <p>${newsDetail.details}</p>`
+
+
+}
+
 loadCategory();

@@ -10,7 +10,13 @@ const displayCategory = data => {
     data.forEach(news => {
 
         const catagoryList = document.createElement('li');
+
         catagoryList.innerHTML = `
+
+
+        
+        
+        
         <li onclick="loadNewsList('${news.category_id}')">${news.category_name}</li>
         `;
         categoryContainer.appendChild(catagoryList)
@@ -28,7 +34,7 @@ const loadNewsList = (id) => {
 const displayNewsList = newsList => {
     // Loader
     toggleLoader(true);
-
+    console.log(newsList)
     // category
     const catagory = document.getElementById('catagory');
     catagory.innerHTML = `<h2>${newsList.length} items found for this category</h2>`
@@ -38,8 +44,13 @@ const displayNewsList = newsList => {
     // const sorting = newsList.total_view - newsList.total_view;
     // console.log(sorting)
 
+
     const newsListDetail = document.getElementById('news-list');
     newsListDetail.textContent = '';
+
+    newsList.sort(function (a, b) {
+        return b.total_view - a.total_view
+    })
     newsList.forEach(news => {
 
 

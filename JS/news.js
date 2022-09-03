@@ -57,7 +57,7 @@ const displayNewsList = newsList => {
                             <figure><img class="" src="${news.thumbnail_url}" alt="Album"></figure>
                     <div class="card-body">
                             <h2 class="card-title">${news.title.length > 80 ? news.title.slice(0, 100) + '...' : news.title}</h2>
-                            <p>${news.details.slice(0, 315) + "..."}</p>
+                            <p>${news.details.slice(0, 315) + '...'}</p>
                        
                         <div class="card-actions flex">
                             <img class="w-1/12 rounded-full" src="${news.author.img}" alt="Album">

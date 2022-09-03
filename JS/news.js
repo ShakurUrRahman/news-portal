@@ -46,7 +46,7 @@ const displayNewsList = newsList => {
                        
                         <div class="card-actions flex">
                         <img class="w-1/12 rounded-full" src="${news.author.img}" alt="Album">
-                        <p>${news.author.name}</p>
+                        <p>${news.author.name ? news.author.name : "No author name found"}</p>
                         <p><i class="fa-solid fa-eye"></i>${news.total_view ? news.total_view : "No view number found"}</p>
                             <label onclick="loadNewsDetail('${news._id}')" for="my-modal-6" class="btn modal-button">News Details</label>
                         </div>

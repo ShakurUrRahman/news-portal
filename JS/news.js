@@ -87,4 +87,4 @@ const toggleLoader = isLoading => {
     }
 }
 
-loadCategory();
+loadCategory(08);

@@ -8,38 +8,47 @@
     <!-- Daisy UI -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/cec1a2380e.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="mx-auto w-11/12">
     <header>
-        <n<div class="navbar bg-base-100">
+        <div class="navbar bg-base-100 my-4">
             <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <a class="btn btn-ghost normal-case text-4xl">All Knowing</a>
             </div>
             <div class="flex-none">
                 <ul class="menu menu-horizontal p-0">
-                    <li><a>Item 1</a></li>
-                    <li tabindex="0">
-                        <a>
-                            Parent
-
-                        </a>
-
-                    </li>
-                    <li><a>Item 3</a></li>
+                    <li><a>News</a></li>
+                    <li><a>Blog</a></li>
                 </ul>
             </div>
-            </div>
+        </div>
     </header>
     <hr>
 
     <main>
-        <section>
+        <!-- News Menu -->
+        <section class="">
 
-            <ul id="category-container" class="menu menu-horizontal bg-base-100 rounded-box">
-                <li><a>Home</a></li>
+
+            <ul id="category-container"
+                class="menu menu-horizontal sm:menu-vertical text-center bg-base-100 rounded-box">
+
             </ul>
+        </section>
+        <!-- Progress Bar -->
+        <section id="loader" class="hidden ">
+            <div class="flex items-center my-32">
 
+                <progress class=" progress w-100 "></progress>
+            </div>
+        </section>
+
+        <!-- Categoty Number -->
+        <section>
+            <h2 id="catagory" class="text-2xl text-center my-4"></h2>
         </section>
 
         <!-- News List -->

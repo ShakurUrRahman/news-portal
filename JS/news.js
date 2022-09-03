@@ -7,24 +7,22 @@ const loadCategory = () => {
 
 const displayCategory = data => {
     const categoryContainer = document.getElementById('category-container');
+
     data.forEach(news => {
 
-        const catagoryList = document.createElement('li');
+        const a = document.createElement('a');
+        a.setAttribute('onclick', `loadNewsList(${news.category_id})`)
+        // a.innerHTML = `
 
-        catagoryList.innerHTML = `
-
-
-        
-        
-        
-        <li onclick="loadNewsList('${news.category_id}')">${news.category_name}</li>
-        `;
-        categoryContainer.appendChild(catagoryList)
+        // <li onclick="loadNewsList('${news.category_id}')">${news.category_name}</li>
+        // `;
+        a.innerText = news.category_name;
+        categoryContainer.appendChild(a)
     })
 };
 const loadNewsList = (id) => {
-    const url = `https://openapi.programming-hero.com/api/news/category/${id}`
-
+    const url = `https://openapi.programming-hero.com/api/news/category/${'0' + id}`
+    console.log(url, id)
     fetch(url)
         .then(res => res.json())
         .then(data => displayNewsList(data.data))
@@ -38,12 +36,9 @@ const displayNewsList = newsList => {
     // category
     const catagory = document.getElementById('catagory');
     catagory.innerHTML = `<h2>${newsList.length} items found for this category</h2>`
-
-    // array sorting
-    // newsList.sort(function () { return newsList.total_view - newsList.total_view });
-    // const sorting = newsList.total_view - newsList.total_view;
-    // console.log(sorting)
-
+    if (newsList.length == 0) {
+        catagory.innerText = "No news here";
+    }
 
     const newsListDetail = document.getElementById('news-list');
     newsListDetail.textContent = '';
@@ -62,7 +57,7 @@ const displayNewsList = newsList => {
                             <figure><img class="" src="${news.thumbnail_url}" alt="Album"></figure>
                     <div class="card-body">
                             <h2 class="card-title">${news.title.length > 80 ? news.title.slice(0, 100) + '...' : news.title}</h2>
-                            <p>${news.details.slice(0, 315)}...</p>
+                            <p>${news.details.slice(0, 315) + "..."}</p>
                        
                         <div class="card-actions flex">
                             <img class="w-1/12 rounded-full" src="${news.author.img}" alt="Album">
@@ -108,5 +103,5 @@ const toggleLoader = isLoading => {
         loaderSection.classList.add('hidden')
     }
 }
-
+loadNewsList(08);
 loadCategory();

@@ -26,14 +26,13 @@ const loadNewsList = (id) => {
         .then(res => res.json())
         .then(data => displayNewsList(data.data))
         .catch(error => console.log(error))
+
+    // Loader
+    toggleLoader(true);
 }
 
 /* Display news list */
 const displayNewsList = newsList => {
-
-    // Loader
-    toggleLoader(true);
-    console.log(newsList)
 
     // category list number viewer
     const catagory = document.getElementById('catagory');
@@ -50,6 +49,7 @@ const displayNewsList = newsList => {
     // display news list
     const newsListDetail = document.getElementById('news-list');
     newsListDetail.textContent = '';
+
     newsList.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('flex')
